@@ -7,7 +7,7 @@ app.use(
   session({
     secret: "@#@$MYSIGN#@$#$",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: true
   })
 );
 
@@ -74,7 +74,8 @@ app.get("/login/:id/:password", function (req, res) {
 
 app.get("/logout", function (req, res) {
   let sess = req.session;
-  if (sess.user_id) {
+  console.log(sess);
+  if (req.session["user_id"]) {
     sess.destroy(function (err) {
       console.log(err);
     });
@@ -87,8 +88,8 @@ app.get("/logout", function (req, res) {
 app.get("/myinfo", function (req, res) {
   let sess = req.session;
   console.log(sess);
-  if (sess.user_id) {
-    res.json(name_database[sess.user_id]);
+  if (req.session["user_id"]) {
+    res.json(name_database[req.session["user_id"]]);
   } else {
     console.log("로그인이 안됨");
     res.redirect("/loginneeded");
