@@ -37,6 +37,7 @@ let login_database = {
 app.get("/", function (req, res) {
   res.send("landing page");
 });
+
 app.get("/loginneeded", function (req, res) {
   let sess = req.session;
   res.send("hi there you need to login ");
@@ -65,7 +66,7 @@ app.get("/login/:id/:password", function (req, res) {
     console.log(true);
     req.session["user_id"] = id;
     req.session["user_password"] = pass;
-    res.send("login successful");
+    res.redirect("/");
   } else {
     console.log(false);
     res.send("id or password is wrong");
