@@ -8,7 +8,6 @@ login.post("/", function(req, res) {
         let id = req.body.id
         let password = req.body.password
 
-        console.log(req.body)
         if(!id || !password) {
             res.status(203).send("id or pass is missing")
         } else if (!database[id] || database[id].password !== password) {
@@ -22,9 +21,9 @@ login.post("/", function(req, res) {
 
 login.get("/auth", function(req, res) {
     if(req.session["userid"]) {
-        res.status(200).send("auth passed")
+        res.sendStatus(200)
     } else {
-        res.status(203).send("auth failed")
+        res.sendStatus(203)
     }
 })
 
