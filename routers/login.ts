@@ -15,7 +15,7 @@ login.post("/", function(req, res) {
         } else if (!database[id] || database[id].password !== password) {
             res.status(203).send("user info does not exist")
         } else if (database[id].password === password){
-            const token = jwt.sign({userid: database[id].userid}, SECRET_KEY, {expiresIn: '4h'}) //'1d'
+            const token = jwt.sign({userid: database[id].userid}, SECRET_KEY, {expiresIn: '5000'}) //'1d'
             res.cookie('authtoken', token)
             res.status(201).send("로그인성공 및 JWT토큰 발급함")
         } else {
